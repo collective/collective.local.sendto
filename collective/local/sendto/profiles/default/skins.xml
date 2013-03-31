@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object>
+
+ <object name="collective_sendto"
+    meta_type="Filesystem Directory View"
+    directory="collective.local.sendto:skins/collective_sendto"/>
+
+ <skin-path name="*">
+  <layer name="collective_sendto"
+         insert-after="custom"/>
+ </skin-path>
+
+</object>

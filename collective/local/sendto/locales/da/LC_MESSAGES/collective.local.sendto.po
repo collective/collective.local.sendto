@@ -1,0 +1,65 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-02-13 12:50+0000\n"
+"PO-Revision-Date: 2012-07-07 09:51 +0100\n"
+"Last-Translator: Thomas CLement Mogensen <tmog@headnet.dk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: da\n"
+"Language-Name: Danish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.local.sendto\n"
+
+#. Default: "Mailing"
+#: ../profiles/default/actions.xml
+msgid "Mailing"
+msgstr "Send besked"
+
+#: ../skins/collective_sendto/collective_sendto_send.cpy:15
+msgid "Message sent."
+msgstr "Beskeden blev sendt"
+
+#: ../skins/collective_sendto/collective_sendto_validate.vpy:27
+msgid "Please fill the e-mail body"
+msgstr "Udfyld venligst beskedens indhold"
+
+#: ../skins/collective_sendto/collective_sendto_validate.vpy:24
+msgid "Please fill the e-mail subject"
+msgstr "Udfyld venligst beskedens emne"
+
+#: ../skins/collective_sendto/collective_sendto_validate.vpy:18
+msgid "Please select at least one receipt"
+msgstr "Vælg venligst mindst en modtager"
+
+#. Default: "send e-mail to selected contacts"
+#: ../skins/collective_sendto/collective_sendto.cpt:133
+msgid "label_send_email_to_selected_contacts"
+msgstr "send besked til valgte modtagere"
+
+#. Default: "Your Message"
+#: ../skins/collective_sendto/collective_sendto.cpt:97
+msgid "label_your_message"
+msgstr "Din besked"
+
+#. Default: "writing from ${context_url}"
+#: ../sendto.py:53
+msgid "mailing_body2"
+msgstr "Denne besked omhandler følgende indhold: ${context_url}."
+
+#. Default: "The e-mail body to send"
+#: ../skins/collective_sendto/collective_sendto.cpt:120
+msgid "mailing_list_email_body_help"
+msgstr "Beskedens indhold"
+
+#. Default: "The e-mail subject to send"
+#: ../skins/collective_sendto/collective_sendto.cpt:105
+msgid "mailing_list_email_subject_help"
+msgstr "Beskedens emne"
+

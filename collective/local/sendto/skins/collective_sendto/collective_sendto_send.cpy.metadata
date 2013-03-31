@@ -1,0 +1,3 @@
+[actions]
+action.failure = traverse_to:string:collective_sendto
+action.success = redirect_to_action:string:view

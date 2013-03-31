@@ -1,0 +1,53 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="collective.local.sendto">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <cmf:registerDirectory name="collective_sendto"/>
+  <i18n:registerTranslations directory="locales" />
+
+
+  <permission
+      id="collective.local.sendto.sendto"
+      title="collective.local.sendto: Send to"
+      />
+
+  <browser:page
+     for="*"
+     name="sendtoavailable"
+     attribute="sendto_available"
+     class=".sendto.Expressions"
+     permission="zope2.View"
+     />
+
+  <browser:page
+     for="collective.local.sendto.interfaces.ISendToAvailable"
+     name="collective-sendto-send"
+     attribute="send"
+     class=".sendto.Send"
+     permission="collective.local.sendto.sendto"
+     />
+
+  <browser:page
+     for="collective.local.sendto.interfaces.ISendToAvailable"
+     name="collective-sendto"
+     class=".sendto.View"
+     permission="collective.local.sendto.sendto"
+     />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.local.sendto"
+      directory="profiles/default"
+      description="Installs the collective.local.sendto package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>

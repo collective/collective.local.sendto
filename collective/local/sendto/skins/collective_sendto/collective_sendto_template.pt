@@ -1,0 +1,7 @@
+<span tal:replace="structure options/email_message" />
+<br />
+--
+<div>
+<span tal:replace="options/actor_fullname" />
+<span tal:replace="structure options/actor_signature" />
+</div>

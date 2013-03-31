@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="collective.local.sendto: Send to" acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
+      <role name="Reader"/>
+      <role name="Contributor"/>
+      <role name="Editor"/>
+    </permission>
+  </permissions>
+</rolemap>
