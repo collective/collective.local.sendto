@@ -5,7 +5,8 @@ Provides a "Mailing" tab on selected content types.
 It provides a 'send email' form where you can select recipients
 from the list of members having a local role on the content.
 
-Content types have just to implement ISendToAvailable.
+Content types have just to implement ISendToAvailable,
+or, if they are dexterity type, to enable the behaviour Send mail tab.
 
 In your policy product :
 
