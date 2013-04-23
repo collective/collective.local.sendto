@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Use png icon (Plone 4.3 compatibility).
+  [thomasdesvenain]
+
 - Now we have a dexterity behaviour.
   [thomasdesvenain]
 

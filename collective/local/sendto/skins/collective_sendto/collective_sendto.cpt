@@ -69,7 +69,8 @@
 			                        </td>
 
         	                        <td>
-			                          <img src="user.gif" alt="" />
+			                          <img src="user.png" alt=""
+                                       tal:attributes="src string:$portal_url/user.png;" />
 			                          <a tal:attributes="href this_user/home;
 			                                             class python:not ismanager and 'overlayable' or ''"
 			                             tal:content="this_user/fullname | this_user/userid" />
