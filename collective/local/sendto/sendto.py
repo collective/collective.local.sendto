@@ -14,6 +14,10 @@ from Products.MailHost.interfaces import IMailHost
 
 from collective.local.sendto import log, SendToMessageFactory as _
 from collective.local.sendto.interfaces import ISendToAvailable
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from Products.ATContentTypes.interfaces.image import IATImage
 
 PMF = MessageFactory('plone')
 
@@ -96,6 +100,55 @@ class View(BrowserView):
         return infos
 
 
+def get_images_from_body(body, context):
+    image_links = re.findall(r'<img[^>]*src="([^"]*)"[^>]*>', body)
+    images = []
+
+    resolver = context.unrestrictedTraverse('@@resolveuid_and_caption')
+    resolver.resolve_uids = True
+    def resolve_image(src):
+        if 'resolveuid' in src:
+            image_info = resolver.resolve_image(image_link)
+            if image_info[0] is None:
+                return None
+            image_file = image_info[0]
+        else:
+            try:
+                image_file = context.unrestrictedTraverse(src)
+            except AttributeError:
+                log.error("Couldn't retrieve %s", src)
+                return None
+
+        return image_file
+
+    # img elements
+    for image_link in list(set(image_links)):
+        image_file = resolve_image(image_link)
+        if not image_file:
+            log.error("No image found for link: %s", image_link)
+            continue
+
+        if IATImage.providedBy(image_file):
+            image_file = image_file.getFile()
+
+        image_filename = image_file.filename
+        images.append(image_file)
+        body = body.replace(image_link, "cid:%s" % image_filename)
+
+    # input images
+    input_image_links = re.findall(r'<input[^>]*type="image"[^>]*src="([^"]*)"[^>]*>', body)
+    for image_link in list(set(input_image_links)):
+        image_file = resolve_image(image_link)
+        image_filename = image_file.filename
+        images.append(image_file)
+        body = re.sub(
+            r'<input([^>]*)type="image"([^>]*)src="' + image_link + r'"([^>]*)>',
+            r'<img\1\2src="cid:' + image_filename + r'"\3>',
+            body)
+
+    return body, images
+
+
 class Send(BrowserView):
 
     def send(self):
@@ -103,6 +156,9 @@ class Send(BrowserView):
         portal_membership = getToolByName(context, 'portal_membership')
         form = self.request.form
         email_body = form.get('email_body')
+
+        email_body, images = get_images_from_body(email_body, context)
+
         email_subject = form.get('email_subject')
 
         roles = getToolByName(context, 'portal_properties').site_properties.sendToRecipientRoles
@@ -150,15 +206,21 @@ class Send(BrowserView):
 
         mailhost = getUtility(IMailHost)
 
+        msgRoot = MIMEMultipart('related')
+        msgRoot['Subject'] = email_subject
+        msgRoot['From'] = mfrom
+        msgRoot.attach(MIMEText(body, 'html', 'utf-8'))
+
+        for image in images:
+            msgImage = MIMEImage(image.data, image.get_content_type().split('/')[1])
+            msgImage.add_header('Content-ID', image.filename)
+            msgRoot.attach(msgImage)
+
         for recipient in mto:
             try:
                 mailhost.send(
-                    body,
-                    mto = [recipient],
-                    mfrom = mfrom,
-                    subject = email_subject,
-                    msg_type = 'text/html',
-                    charset = 'utf-8')
+                    msgRoot,
+                    mto = [recipient])
             except MailHostError, e:
                 log.error("%s : %s", e, recipient)
 
