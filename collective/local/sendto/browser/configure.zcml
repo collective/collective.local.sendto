@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.local.sendto">
+
+  <browser:page
+     for="*"
+     name="sendtoavailable"
+     attribute="sendto_available"
+     class=".view.Expressions"
+     permission="zope2.View"
+     />
+
+  <browser:page
+     for="collective.local.sendto.interfaces.ISendToAvailable"
+     name="collective_sendto"
+     template="templates/collective_sendto.pt"
+     class=".view.View"
+     permission="collective.local.sendto.sendto"
+     />
+
+  <browser:page
+     for="collective.local.sendto.interfaces.ISendToAvailable"
+     name="collective-sendto-send"
+     attribute="send"
+     class=".send.Send"
+     permission="collective.local.sendto.sendto"
+     />
+
+</configure>
