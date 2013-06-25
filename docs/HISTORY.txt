@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- Plone 4.3 jQuery compatibility.
+  [thomasdesvenain]
+
 - Remove Controller Page Templates, use views.
   [thomasdesvenain]
 
