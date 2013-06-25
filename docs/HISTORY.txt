@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- Remove Controller Page Templates, use views.
+  [thomasdesvenain]
+
 - We can include images in sent email.
   [thomasdesvenain]
 

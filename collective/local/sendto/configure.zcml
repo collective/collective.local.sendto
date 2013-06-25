@@ -19,29 +19,6 @@
       title="collective.local.sendto: Send to"
       />
 
-  <browser:page
-     for="*"
-     name="sendtoavailable"
-     attribute="sendto_available"
-     class=".sendto.Expressions"
-     permission="zope2.View"
-     />
-
-  <browser:page
-     for="collective.local.sendto.interfaces.ISendToAvailable"
-     name="collective-sendto-send"
-     attribute="send"
-     class=".sendto.Send"
-     permission="collective.local.sendto.sendto"
-     />
-
-  <browser:page
-     for="collective.local.sendto.interfaces.ISendToAvailable"
-     name="collective-sendto"
-     class=".sendto.View"
-     permission="collective.local.sendto.sendto"
-     />
-
   <genericsetup:registerProfile
       name="default"
       title="collective.local.sendto"
@@ -54,5 +31,7 @@
   <configure zcml:condition="installed plone.app.dexterity">
     <include file="dexterity.zcml" />
   </configure>
+
+  <include package=".browser" />
 
 </configure>
