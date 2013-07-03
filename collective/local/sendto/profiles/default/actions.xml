@@ -11,6 +11,7 @@
    <property name="icon_expr"></property>
    <property name="available_expr">object/sendtoavailable</property>
    <property name="permissions">
+    <element value="collective.local.sendto: Send to"/>
    </property>
    <property name="visible">True</property>
   </object>

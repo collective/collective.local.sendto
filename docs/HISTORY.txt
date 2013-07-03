@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- Fix sendto action permission.
+  [thomasdesvenain]
+
 - Plone 4.3 jQuery compatibility.
   [thomasdesvenain]
 

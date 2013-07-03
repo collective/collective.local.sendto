@@ -34,4 +34,12 @@
 
   <include package=".browser" />
 
+  <genericsetup:upgradeStep
+       title="Migration profile for collective.local.sendto to 2"
+       description="Fix sendto action permission"
+       source="1"
+       destination="2"
+       handler=".upgrades.v2"
+       profile="collective.local.sendto:default" />
+
 </configure>
