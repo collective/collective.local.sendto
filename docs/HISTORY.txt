@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- i18n fixes.
+  [thomasdesvenain]
+
 - Fix sendto action permission.
   [thomasdesvenain]
 
@@ -23,7 +26,7 @@ Changelog
 - Use png icon (Plone 4.3 compatibility).
   [thomasdesvenain]
 
-- Now we have a dexterity behaviour.
+- Now we have a dexterity behavior.
   [thomasdesvenain]
 
 

@@ -6,7 +6,7 @@ It provides a 'send email' form where you can select recipients
 from the list of members having a local role on the content.
 
 Content types have just to implement ISendToAvailable,
-or, if they are dexterity type, to enable the behaviour Send mail tab.
+or, if they are dexterity type, to enable the behavior "Send mail tab".
 
 In your policy product :
 
@@ -26,4 +26,4 @@ COMPATIBILITY
 -------------
 
 Plone 4.0, Plone 4.1
-Wisywig behaviour needs Products.TinyMCE >= 1.0
+Wisywig behavior needs Products.TinyMCE >= 1.0

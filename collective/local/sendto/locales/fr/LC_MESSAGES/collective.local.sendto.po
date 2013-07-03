@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-13 12:50+0000\n"
+"POT-Creation-Date: 2013-07-03 21:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,48 +14,56 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: dexterity.zcml
+msgid "Adds an tab allowing users to send emails to users who have a role on the content."
+msgstr "Ajoute un onglet d'où l'on peut envoyer des emails aux utilisateurs ayant des droits sur le contenu."
+
 #: ../profiles/default/actions.xml
 msgid "Mailing"
 msgstr "Messagerie"
 
-#: ../skins/collective_sendto/collective_sendto_send.cpy:15
+#: ../browser/view.py:110
 msgid "Message sent."
 msgstr "Message envoyé."
 
-#: ../skins/collective_sendto/collective_sendto_validate.vpy:27
+#: ../browser/view.py:104
 msgid "Please fill the e-mail body"
 msgstr "Saisissez le contenu de l'email"
 
-#: ../skins/collective_sendto/collective_sendto_validate.vpy:24
+#: ../browser/view.py:101
 msgid "Please fill the e-mail subject"
 msgstr "Saisissez le sujet de l'e-mail"
 
-#: ../skins/collective_sendto/collective_sendto_validate.vpy:18
+#: ../browser/view.py:95
 msgid "Please select at least one receipt"
 msgstr "Veuillez sélectionnez au moins un destinataire"
 
+#: dexterity.zcml
+msgid "Send mail tab"
+msgstr "Onglet Messagerie"
+
 #. Default: "send e-mail to selected contacts"
-#: ../skins/collective_sendto/collective_sendto.cpt:133
+#: ../browser/templates/collective_sendto.pt:133
 msgid "label_send_email_to_selected_contacts"
 msgstr "envoyer l'email aux contacts sélectionnés"
 
 #. Default: "Your Message"
-#: ../skins/collective_sendto/collective_sendto.cpt:97
+#: ../browser/templates/collective_sendto.pt:97
 msgid "label_your_message"
 msgstr "Votre message"
 
 #. Default: "writing from ${context_url}"
-#: ../sendto.py:53
+#: ../browser/view.py:42
 msgid "mailing_body2"
 msgstr "envoyé de ${context_url}"
 
 #. Default: "The e-mail body to send"
-#: ../skins/collective_sendto/collective_sendto.cpt:120
+#: ../browser/templates/collective_sendto.pt:120
 msgid "mailing_list_email_body_help"
 msgstr "Le message de l'email à envoyer"
 
 #. Default: "The e-mail subject to send"
-#: ../skins/collective_sendto/collective_sendto.cpt:105
+#: ../browser/templates/collective_sendto.pt:105
 msgid "mailing_list_email_subject_help"
 msgstr "Le sujet de l'email à envoyer"
 
