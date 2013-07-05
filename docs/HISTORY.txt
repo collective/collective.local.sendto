@@ -4,6 +4,10 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- uses the same algorithm from collective.local.userlisting
+  to get members with roles.
+  [thomasdesvenain]
+
 - i18n fixes.
   [thomasdesvenain]
 

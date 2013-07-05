@@ -4,21 +4,14 @@ from zope.i18nmessageid.message import MessageFactory
 
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from plone.stringinterp.adapters import _recursiveGetMembersFromIds
 from Products.statusmessages.interfaces import IStatusMessage
 
 from collective.local.sendto.interfaces import ISendToAvailable
 from collective.local.sendto import SendToMessageFactory as _
+from collective.local.userlisting import listed_users_with_local_role
+
 
 PMF = MessageFactory('plone')
-
-
-def recursive_users_with_role(content, portal, role):
-    # union with set of ids of members with the local role
-    users_with_role = set(content.users_with_local_role(role))
-    role_manager = portal.acl_users.portal_role_manager
-    users_with_role |= set([p[0] for p in role_manager.listAssignedPrincipals(role)])
-    return _recursiveGetMembersFromIds(portal, users_with_role)
 
 
 class View(BrowserView):
@@ -62,7 +55,8 @@ class View(BrowserView):
         roles = self._recipient_roles()
 
         for role in roles:
-            users = recursive_users_with_role(context, portal, role)
+            users = listed_users_with_local_role(context, role,
+                                                 include_global_role=True)
             if len(users) == 0:
                 continue
 
