@@ -25,7 +25,7 @@ setup(name='collective.local.sendto',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'collective.local.userlisting',
+          'collective.local.userlisting>=1.3',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
