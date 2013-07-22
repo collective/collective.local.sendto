@@ -5,6 +5,7 @@ from email.mime.image import MIMEImage
 import re
 
 from zope.component import getUtility
+from zope.event import notify
 
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
@@ -13,6 +14,7 @@ from Products.MailHost.interfaces import IMailHost
 from Products.ATContentTypes.interfaces.image import IATImage
 
 from collective.local.sendto import log
+from collective.local.sendto.events import MailSentEvent
 
 
 def get_images_from_body(body, context):
@@ -70,9 +72,9 @@ class Send(BrowserView):
         context = self.context
         portal_membership = getToolByName(context, 'portal_membership')
         form = self.request.form
-        email_body = form.get('email_body')
+        unmodified_email_body = form.get('email_body')
 
-        email_body, images = get_images_from_body(email_body, context)
+        email_body, images = get_images_from_body(unmodified_email_body, context)
 
         email_subject = form.get('email_subject')
 
@@ -131,11 +133,19 @@ class Send(BrowserView):
             msgImage.add_header('Content-ID', image.filename)
             msgRoot.attach(msgImage)
 
+        mail_sent_event = MailSentEvent(subject=email_subject,
+                                        body=unmodified_email_body,
+                                        sender=mfrom,
+                                        recipients=recipients)
+        mail_sent = False
         for recipient in mto:
             try:
                 mailhost.send(
                     msgRoot,
                     mto = [recipient])
+                mail_sent = True
             except MailHostError, e:
                 log.error("%s : %s", e, recipient)
 
+        if mail_sent:
+            notify(mail_sent_event)

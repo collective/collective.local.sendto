@@ -4,7 +4,8 @@ Changelog
 1.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Notify MailSentEvent when an email is sent.
+  [cedricmessiant]
 
 
 1.4 (2013-07-18)
