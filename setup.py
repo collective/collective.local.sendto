@@ -26,8 +26,14 @@ setup(name='collective.local.sendto',
       install_requires=[
           'setuptools',
           'collective.local.userlisting>=1.3',
-          # -*- Extra requirements: -*-
+          'plone.api',
       ],
+      extras_require={
+          'test': [
+              'ecreall.helpers.testing',
+              'plone.app.testing',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
 
