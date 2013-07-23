@@ -27,6 +27,7 @@ setup(name='collective.local.sendto',
           'setuptools',
           'collective.local.userlisting>=1.3',
           'plone.api',
+          'plone.behavior',
       ],
       extras_require={
           'test': [
