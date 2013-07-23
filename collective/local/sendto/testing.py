@@ -19,6 +19,16 @@ from ecreall.helpers.testing import member as memberhelpers
 import collective.local.sendto
 
 
+USERDEFS = [{'user': 'admin', 'roles': ('Site Administrator', ), 'groups': ()},
+            {'user': 'manager', 'roles': ('Manager', ), 'groups': ()},
+            {'user': 'bart', 'roles': ('Member', ), 'groups': ()},
+            {'user': 'lisa', 'roles': ('Member', ), 'groups': ()},
+            {'user': 'homer', 'roles': ('Member', ), 'groups': ()},
+            {'user': 'marge', 'roles': ('Member', ), 'groups': ()},
+            {'user': 'milhouse', 'roles': ('Member', 'Contributor'), 'groups': ()},
+            ]
+
+
 class CollectiveLocalSendtoLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
@@ -36,7 +46,7 @@ class CollectiveLocalSendtoLayer(PloneSandboxLayer):
         applyProfile(portal, 'collective.local.sendto:default')
 
         # create some users
-        #memberhelpers.createMembers(portal, USERDEFS)
+        memberhelpers.createMembers(portal, USERDEFS)
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])

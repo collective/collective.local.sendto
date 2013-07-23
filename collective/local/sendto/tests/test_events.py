@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from plone import api
+
 from collective.local.sendto.testing import IntegrationTestCase
 from collective.local.sendto.events import MailSentEvent
 
@@ -11,13 +13,13 @@ class TestEvents(IntegrationTestCase):
         super(TestEvents, self).setUp()
 
     def test_mail_sent_event(self):
+        # TODO: test that the event is launched with plone.event
+        bart = api.user.get('bart')
+        homer = api.user.get('homer')
         event = MailSentEvent(subject=u"Mail subject",
                               body=u"Mail body text",
-                              sender="lisasimpson",
-                              recipients=['bartsimpson', 'homersimpson'])
+                              recipients=[bart, homer])
         self.assertEqual(u"Mail subject", event.subject)
         self.assertEqual(u"Mail body text", event.body)
-        self.assertEqual('lisasimpson', event.sender)
-        self.assertIn('bartsimpson', event.recipients)
-        self.assertIn('homersimpson', event.recipients)
-        self.assertNotIn('lisasimpson', event.recipients)
+        self.assertIn(bart, event.recipients)
+        self.assertIn(homer, event.recipients)
