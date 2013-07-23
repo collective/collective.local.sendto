@@ -135,7 +135,6 @@ class Send(BrowserView):
 
         mail_sent_event = MailSentEvent(subject=email_subject,
                                         body=unmodified_email_body,
-                                        sender=mfrom,
                                         recipients=recipients)
         mail_sent = False
         for recipient in mto:

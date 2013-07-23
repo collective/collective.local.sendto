@@ -10,9 +10,8 @@ class MailSentEvent(object):
     body = u''
     recipients = []
 
-    def __init__(self, subject, body, sender, recipients, **kwargs):
+    def __init__(self, subject, body, recipients, **kwargs):
         self.subject = subject
         self.body = body
-        self.sender = sender
         self.recipients = recipients
         self.kwargs = kwargs
