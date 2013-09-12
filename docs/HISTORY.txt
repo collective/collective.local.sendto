@@ -4,6 +4,9 @@ Changelog
 1.5 (unreleased)
 ----------------
 
+- Delegated re-usable methods : send_mail and get_images_from_body.
+  [thomasdesvenain]
+
 - Notify MailSentEvent when an email is sent.
   [cedricmessiant]
 
