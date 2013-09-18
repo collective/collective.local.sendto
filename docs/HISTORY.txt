@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.5 (unreleased)
+1.5 (2013-09-18)
 ----------------
 
 - Delegated re-usable methods : send_mail and get_images_from_body.
