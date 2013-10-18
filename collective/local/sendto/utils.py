@@ -63,22 +63,23 @@ def get_images_from_body(body, context):
     return body, tuple(images)
 
 
-def send_mail(subject=None, body=None, mfrom=None, mto=None, images=()):
+def send_mail(subject=None, body=None, mfrom=None, mto=None, images=(),
+              content_type='html'):
     mfrom = formataddr(mfrom)
     mto = [formataddr(r) for r in mto if r[1] is not None]
     mailhost = getUtility(IMailHost)
-    
+
     msgRoot = MIMEMultipart('related')
     msgRoot['Subject'] = subject
     msgRoot['From'] = mfrom
-    msgRoot.attach(MIMEText(body, 'html', 'utf-8'))
+    msgRoot.attach(MIMEText(body, content_type, 'utf-8'))
 
     for image in images:
-        msgImage = MIMEImage(image.data, 
+        msgImage = MIMEImage(image.data,
                              image.get_content_type().split('/')[1])
         msgImage.add_header('Content-ID', image.filename)
         msgRoot.attach(msgImage)
-        
+
     mail_sent = False
     for recipient in mto:
         try:
@@ -88,5 +89,5 @@ def send_mail(subject=None, body=None, mfrom=None, mto=None, images=()):
             mail_sent = True
         except MailHostError, e:
             log.error("%s - %s : %s", e, recipient)
-    
+
     return mail_sent
