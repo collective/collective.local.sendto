@@ -10,6 +10,7 @@ from Products.MailHost.MailHost import MailHostError
 from Products.MailHost.MailHost import formataddr
 from Products.MailHost.interfaces import IMailHost
 from Products.ATContentTypes.interfaces.image import IATImage
+from plone import api
 
 from collective.local.sendto import log
 
@@ -65,6 +66,17 @@ def get_images_from_body(body, context):
 
 def send_mail(subject=None, body=None, mfrom=None, mto=None, images=(),
               content_type='html'):
+    """ Send an email
+    mfrom: ("Name", "name@address.org")
+    mto: (("Name 1", "name1@address.org"), ("Name 2", "name2@address.org"))
+    """
+    if not mfrom:
+        portal = api.portal.get()
+        mfrom = (
+            portal.getProperty('email_from_name'),
+            portal.getProperty('email_from_address'),
+        )
+
     mfrom = formataddr(mfrom)
     mto = [formataddr(r) for r in mto if r[1] is not None]
     mailhost = getUtility(IMailHost)
