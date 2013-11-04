@@ -64,6 +64,16 @@ def get_images_from_body(body, context):
     return body, tuple(images)
 
 
+def get_formated_addr(name, email):
+    if isinstance(name, unicode):
+        name = name.encode('utf-8')
+
+    if isinstance(email, unicode):
+        email = email.encode('utf-8')
+
+    return formataddr((name, email))
+
+
 def send_mail(subject=None, body=None, mfrom=None, mto=None, images=(),
               content_type='html'):
     """ Send an email
@@ -77,8 +87,9 @@ def send_mail(subject=None, body=None, mfrom=None, mto=None, images=(),
             portal.getProperty('email_from_address'),
         )
 
-    mfrom = formataddr(mfrom)
-    mto = [formataddr(r) for r in mto if r[1] is not None]
+    mfrom = get_formated_addr(*mfrom)
+    mto = [get_formated_addr(name, email)
+           for name, email in mto if email is not None]
     mailhost = getUtility(IMailHost)
 
     msgRoot = MIMEMultipart('related')

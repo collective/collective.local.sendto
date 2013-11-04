@@ -4,6 +4,12 @@ Changelog
 1.6 (unreleased)
 ----------------
 
+- Works when emails and name given are unicode.
+  [thomasdesvenain]
+
+- When no mfrom is given use portal email.
+  [ebrehault]
+
 - We can set body content_type in send_mail.
   [thomasdesvenain]
 
