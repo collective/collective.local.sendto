@@ -38,6 +38,9 @@ def get_images_from_body(body, context):
 
     # img elements
     for image_link in list(set(image_links)):
+        if image_link.startswith('http://'):
+            continue
+
         image_file = resolve_image(image_link)
         if not image_file:
             log.error("No image found for link: %s", image_link)
