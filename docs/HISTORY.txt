@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.7 (unreleased)
-----------------
+1.6.1 (2014-06-02)
+------------------
 
 - Avoid error log for external image links.
   [thomasdesvenain]
