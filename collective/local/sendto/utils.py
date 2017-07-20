@@ -30,7 +30,7 @@ def get_images_from_body(body, context):
         else:
             try:
                 image_file = context.unrestrictedTraverse(src)
-            except AttributeError:
+            except (KeyError, AttributeError):
                 log.error("Couldn't retrieve %s", src)
                 return None
 
