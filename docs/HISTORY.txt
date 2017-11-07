@@ -4,6 +4,9 @@ Changelog
 1.6.2 (unreleased)
 ------------------
 
+- Improve error log when image missing.
+  [thomasdesvenain]
+
 - Prevent fatal error if image links are broken
   [thomasdesvenain]
 

@@ -43,7 +43,7 @@ def get_images_from_body(body, context):
 
         image_file = resolve_image(image_link)
         if not image_file:
-            log.error("No image found for link: %s", image_link)
+            log.error("get_images_from_body: no image found for link: %s (%s)", image_link, context.absolute_url())
             continue
 
         if IATImage.providedBy(image_file):
