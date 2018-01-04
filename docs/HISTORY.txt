@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.6.2 (unreleased)
+1.6.2 (2018-01-04)
 ------------------
 
 - Improve error log when image missing.
